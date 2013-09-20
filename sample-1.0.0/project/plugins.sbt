@@ -8,6 +8,6 @@ resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/release
 resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
 
 // Use the Play sbt plugin for Play projects
-addSbtPlugin("play" % "sbt-plugin" % "2.1.1")
+addSbtPlugin("play" % "sbt-plugin" % "2.1.3")
 
 addSbtPlugin("com.ketalo.play.plugins" % "emberjs" % "1.0.0-SNAPSHOT")

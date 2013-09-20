@@ -79,8 +79,8 @@ trait EmberJsTasks extends EmberJsKeys {
 
   import Keys._
 
-  lazy val EmberJsCompiler = (sourceDirectory in Compile, resourceManaged in Compile, cacheDirectory, emberJsVersion, emberJsTemplateFile, emberJsFileRegexFrom, emberJsFileRegexTo, emberJsAssetsDir, emberJsAssetsGlob).map {
-      (src, resources, cache, version, templateFile, fileReplaceRegexp, fileReplaceWith, assetsDir, files) =>
+  lazy val EmberJsCompiler = (sourceDirectory in Compile, resourceManaged in Compile, cacheDirectory, emberJsVersion, emberJsTemplateFile, emberJsFileRegexFrom, emberJsFileRegexTo, emberJsAssetsDir, emberJsAssetsGlob,streams).map {
+      (src, resources, cache, version, templateFile, fileReplaceRegexp, fileReplaceWith, assetsDir, files,s) =>
       val cacheFile = cache / "emberjs"
       val templatesDir = resources / "public" / "templates"
       val global = templatesDir / templateFile
@@ -113,7 +113,8 @@ trait EmberJsTasks extends EmberJsKeys {
                 Some(column))
             }.right.get
 
-            output ++= "\ntemplates['%s'] = template(%s);\n\n".format(FilenameUtils.removeExtension(name), jsSource)
+            output ++= "\ntemplates['%s'] = template(%s);\n\n".format(FilenameUtils.removeExtension(name.replace("\\","/")), jsSource)
+         s.log.info(name);
 
             val out = new File(resources, "public/templates/" + naming(name))
             IO.write(out, jsSource)
