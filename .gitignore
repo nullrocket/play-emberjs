@@ -1,4 +1,22 @@
-target/
-.idea/
-.idea_modules/
-logs/
+# Ignore all dotfiles...
+.*
+# except for .gitignore
+!.gitignore
+
+# Ignore Play! working directory #
+db
+eclipse
+lib
+log
+logs
+modules
+precompiled
+project/project
+project/target
+target
+tmp
+test-result
+server.pid
+*.iml
+*.eml
+bin
